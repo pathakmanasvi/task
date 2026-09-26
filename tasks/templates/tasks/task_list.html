@@ -47,5 +47,18 @@
       <li id="empty-state">No tasks yet — add one above.</li>
     {% endfor %}
   </ul>
+  <script>
+  const themeBtn = document.getElementById("theme-btn");
+  function applyTheme(theme) {
+    document.documentElement.dataset.theme = theme;
+    themeBtn.textContent = theme === "dark" ? "☀️ Light mode" : "🌙 Dark mode";
+    localStorage.setItem("taskflow.theme", theme);
+  }
+  themeBtn.addEventListener("click", () => {
+    const next = document.documentElement.dataset.theme === "dark" ? "light" : "dark";
+    applyTheme(next);
+  });
+  applyTheme(localStorage.getItem("taskflow.theme") || "light");
+</script>
 </body>
 </html>
